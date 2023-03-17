@@ -11,12 +11,14 @@ def get_data():
         content = file.read()
     return content
 
+
 def get_time_from_line(line):
     # line_str = line.split()
     # return line_str[0]
     time = re.findall(r'\d{2}:\S+', line)[0]
 
     return time
+
 
 def get_rhines_times():
     """Return a list of Jennifer Rhines' race times"""
@@ -29,6 +31,7 @@ def get_rhines_times():
 
     return times
 
+
 def get_average():
     """Return Jennifer Rhines' average race time in the format:
        mm:ss:M where :
@@ -39,7 +42,6 @@ def get_average():
     total = datetime.timedelta()
 
     for rtime in racetimes:
-        # mins, seconds, msecond = re.split(r'[:.]', rtime)
         time_parts = re.split(r'[:.]', rtime)
 
         if len(time_parts) > 2:
@@ -51,8 +53,9 @@ def get_average():
             seconds = time_parts[1]
             msecond = '0'
 
-        total += datetime.timedelta(minutes=int(mins), seconds=int(seconds), milliseconds=int(msecond))
-    
+        total += datetime.timedelta(minutes=int(mins),
+                                    seconds=int(seconds), milliseconds=int(msecond))
+
     result_str = '{}'.format(total / len(racetimes))[2:-5]
 
     return result_str
