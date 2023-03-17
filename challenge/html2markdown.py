@@ -17,7 +17,7 @@ def convert_paragraphs(html):
     html = re.sub(r'^<p>', "", html)
     html = re.sub(r'</p>$', "", html)
     html = re.sub(r'</p><p>', "\n\n", html)
-    # html = re.sub(r'<p>(.+?)</p>', r'\1\n\n', html)   # not working
+    # html = re.sub(r'<p>(.+?)</p>', r'\1\n\n', html)       # another option
     return html
 
 
@@ -44,4 +44,4 @@ def html2markdown(html):
 
     html = convert_urls(html)
 
-    return html
+    return html.strip()
